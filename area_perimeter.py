@@ -99,7 +99,7 @@ class parallelogram():
 if __name__ == '__main__':
     while True:
         try:
-            shape = input(" (circle/rectangle/square/parallelogram): ").lower()
+            shape = input(" select (circle/rectangle/square/parallelogram): ").lower()
             """
             select the shape from the above shapes
             """
