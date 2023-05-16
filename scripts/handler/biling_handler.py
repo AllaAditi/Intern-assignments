@@ -3,7 +3,7 @@ from scripts.database.mongodb import read_item, create_item, update_item, delete
 
 class ItemHandler:
 
-    def read_data(self):  # self is use to access variables that belongs to the class
+    def read_data(self):  # self is used to access variables that belongs to the class
         return read_item()
 
     def create_data(self, item: Item):

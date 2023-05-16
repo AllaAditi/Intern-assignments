@@ -1,3 +1,4 @@
+import os
 import smtplib # simple mail transfer protocol
 from pydantic import BaseModel
 from email.mime.multipart import MIMEMultipart # support the transfer of single or multiple text
@@ -11,8 +12,8 @@ class Email(BaseModel):
 
 
 def send_email(email: Email):
-    sender_email = "allaaditi02gmail.com"
-    sender_password = "gkxqpyicvpbpkimk"
+    sender_email = os.environ.get("sender_email")
+    sender_password = os.environ.get("sender_password")
     receiver_email = email.rec_email
 
     message = MIMEMultipart()
