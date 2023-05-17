@@ -1,5 +1,18 @@
-class DBconstants:
-    DB_URI = "mongodb://intern_23:intern%40123@192.168.0.220:2717/interns_b2_23"
-    DB_DATABASE = "interns_b2_23"
-    DB_COLLECTION = "db.aditi_bilLing"
+from configparser import ConfigParser
+import sys
 
+try:
+    config = ConfigParser()
+    config.read("configuration/application.conf")
+except Exception as e:
+    print(f"Error while loading the config: {e}")
+    print("Failed to Load Configuration. Exiting!!!")
+    sys.stdout.flush()
+    sys.exit()
+
+
+class DBConf:
+    MONGO_URI = config.get("MONGO_DB", "M_uri")
+    if not MONGO_URI:
+        print("Error, environment variable MONGO_URI not set")
+        sys.exit(1)

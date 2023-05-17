@@ -1,15 +1,20 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from pymongo import MongoClient  # import mongo client make connections to MongoDb
+from scripts.constants.app_constants import DBConf
 
+MONGO_URI = DBConf.MONGO_URI
 app = FastAPI()
 
 # Creating instance of mongo client
-client = MongoClient("mongodb://intern_23:intern%40123@192.168.0.220:2717/interns_b2_23")
+client = MongoClient(MONGO_URI)
 # Creating database
-db = client["interns_b2_23"]
+db = client.interns_b2_23
 # # Creating document
-billing = db["aditi_biling"] # It is our DataBase
+billing = db.aditi_biling
+
+
+# It is our DataBase
 
 
 # creating class
