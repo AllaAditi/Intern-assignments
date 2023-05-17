@@ -11,7 +11,7 @@ class Email(BaseModel):
     body: str
 
 
-def send_email(email: Email):
+def send_email(body, email: Email):
     sender_email = os.environ.get("sender_email")
     sender_password = os.environ.get("sender_password")
     receiver_email = email.rec_email
@@ -21,7 +21,7 @@ def send_email(email: Email):
     message["To"] = receiver_email
     message["Subject"] = email.subject
 
-    message.attach(MIMEText(email.body, "plain"))
+    message.attach(MIMEText(str(body), "plain"))
 
     try:
         server = smtplib.SMTP("smtp.gmail.com", 587)
