@@ -1,3 +1,5 @@
+from http import client
+
 from fastapi import FastAPI
 from pydantic import BaseModel
 from pymongo import MongoClient  # import mongo client make connections to MongoDb
