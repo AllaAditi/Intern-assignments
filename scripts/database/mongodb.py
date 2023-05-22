@@ -28,20 +28,19 @@ class Item(BaseModel):
 
 
 def read_item():  # get
+    item = billing.find({})
     datas = []
-    for items in billing.find():
+    for items in item:
         data = {'id': items['id'], 'name': items['name'], 'quantity': items['quantity'], 'cost': items['cost']}
         datas.append(data)
-    return {
-        "db": data
-    }
+    return {"billing":datas}
 
 
 def create_item(item: Item):  # post
     billing.insert_one(item.dict())
-    db[item.id] = item.name
+    # db[item.id] = item.name
     return {
-        "db": db
+        "item succesfully added"
     }
 
 
