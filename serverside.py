@@ -3,8 +3,7 @@ import websockets
 
 
 async def handle_client(websocket, path):
-    while True:
-        message = await websocket.recv()
+    async for message in websocket:
         print(f"Received message from client: {message}")
 
         # Process the message from the client

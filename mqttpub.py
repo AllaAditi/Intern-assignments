@@ -7,16 +7,15 @@ broker_port = 1883
 # MQTT topic and message
 topic = "hello"
 message = "Hello, World MQTT!"
-while True:
 
-    # Create a MQTT client instance
-    client = mqtt.Client()
+# Create a MQTT client instance
+client = mqtt.Client()
 
-    # Connect to the MQTT broker
-    client.connect(broker_address)
+# Connect to the MQTT broker
+client.connect(broker_address, broker_port)
 
-    # Publish the message to the topic
-    client.publish(topic, message)
+# Publish the message to the topic
+client.publish(topic, message)
 
-    # Disconnect from the MQTT broker
-    client.disconnect()
+# Disconnect from the MQTT broker
+client.disconnect()

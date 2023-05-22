@@ -9,7 +9,7 @@ topic = "hello"
 
 
 # Callback function when a message is received
-def on_message(client,userdata, msg):
+def on_message(client, userdata, msg):
     print(f"Received message: {msg.payload.decode()}")
 
 
