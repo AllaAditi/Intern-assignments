@@ -28,10 +28,10 @@ class Item(BaseModel):
 
 
 def read_item():  # get
-    data = []
+    datas = []
     for items in billing.find():
-        del items['_id']
-        data.append(items)
+        data = {'id': items['id'], 'name': items['name'], 'quantity': items['quantity'], 'cost': items['cost']}
+        datas.append(data)
     return {
         "db": data
     }
