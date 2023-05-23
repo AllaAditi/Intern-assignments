@@ -33,24 +33,44 @@ def read_item():  # get
     for items in item:
         data = {'id': items['id'], 'name': items['name'], 'quantity': items['quantity'], 'cost': items['cost']}
         datas.append(data)
-    return {"billing":datas}
+    return {"billing": datas}
 
 
 def create_item(item: Item):  # post
     billing.insert_one(item.dict())
-    # db[item.id] = item.name
+    try:
+        existing_item = billing.insert_one({"id": item.id})
+
+        if existing_item:
+            raise Exception(" ID already exists")
+
+        billing.insert_one(item.dict())
+        return {"message": "item created successfully"}
+
+    except Exception as e:
+        return {"message": str(e)}
     return {
         "item succesfully added"
     }
 
 
-def update_item(item_id: int, item: Item):  # put
-    billing.update_one({"id": item_id}, {"$set": item.dict()})
+# def update_item(item_id: int, item: Item):  # put
+# billing.update_one({"id": item_id}, {"$set": item.dict()})
+
+def update_item(item_id: int, item: Item):
+    try:
+        billing.update_one({"id": item_id}, {"$set": item.dict()})
+        return {"message": "Item updated"}
+    except:
+        return {"message": "Error updating item"}
 
 
 def delete_item(item_id: int):
-    billing.delete_one({"id": item_id})
-    return {"message": "deleted"}
+    try:
+        billing.delete_one({"id": item_id})
+        return {"message": "already deleted"}
+    except:
+        return {"message": "Item not found in the database"}
 
 
 def pipeline_aggregation(pipeline: list):
